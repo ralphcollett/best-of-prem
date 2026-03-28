@@ -62,9 +62,10 @@ export function Leaderboard({ ranked, awards }: Props) {
     return (index + 1).toString();
   };
 
-  // Derive unique clubs per player from their awards
+  // Derive unique clubs per player from their awards, in chronological order
   const getPlayerClubs = (playerId: string): string => {
-    const clubs = [...new Set(awards.filter(a => a.playerId === playerId).map(a => a.club))];
+    const sorted = awards.filter(a => a.playerId === playerId).sort((a, b) => a.season.localeCompare(b.season));
+    const clubs = [...new Set(sorted.map(a => a.club))];
     return clubs.join(', ');
   };
 
