@@ -9,7 +9,8 @@ interface Props {
 function positionGroup(position: string): 'GK' | 'DF' | 'MF' | 'FW' {
   if (position === 'GK') return 'GK';
   if (['RB', 'CB', 'LB'].includes(position)) return 'DF';
-  if (['CM', 'CDM', 'CAM', 'RW', 'LW'].includes(position)) return 'MF';
+  if (['CM', 'CDM', 'CAM'].includes(position)) return 'MF';
+  if (['RW', 'LW'].includes(position)) return 'FW';
   return 'FW';
 }
 
