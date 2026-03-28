@@ -6,11 +6,14 @@ A React app that ranks the greatest Premier League players of all time using PFA
 
 | Award | Points | Notes |
 |---|---|---|
-| PFA Players' Player of the Year | 4 pts | Per season won |
-| PFA Team of the Year | 2 pts | Not counted if player also won POTY that season |
-| PFA Young Player of the Year | 1 pt | Per season won |
+| PFA Players' Player of the Year (POTY) | 3 pts | Per season won |
+| PFA Team of the Year (TOTY) | 1 pt | Per season won |
+| PFA Young Player of the Year (YPOTY) | 1 pt | Per season won |
 
-**Tiebreaker**: Total Premier League appearances.
+**Tiebreakers** (in order):
+1. Total number of PFA Player of the Year (POTY) wins.
+2. Total number of PFA Young Player of the Year (YPOTY) wins.
+3. If still equal, players share the same rank.
 
 Data covers the full Premier League era: 1992–93 to 2024–25.
 

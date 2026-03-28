@@ -12,7 +12,6 @@ interface Props {
 const FORMATION_OPTIONS: { value: Formation; label: string }[] = [
   { value: '4-3-3', label: '4-3-3' },
   { value: '4-4-2', label: '4-4-2' },
-  { value: '5-3-2', label: '5-3-2' },
 ];
 
 // Shirt number by rank in the XI list
@@ -35,13 +34,12 @@ function PlayerCircle({ ps, num }: { ps: PlayerScore; num: number }) {
   );
 }
 
-function EmptyCircle({ slot }: { slot: string }) {
+function EmptyCircle() {
   return (
     <div className="flex flex-col items-center gap-0.5">
       <div className="w-10 h-10 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center text-white/20 text-xs">
         ?
       </div>
-      <span className="text-white/20 text-xs">{slot}</span>
     </div>
   );
 }
@@ -54,7 +52,7 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
     <div className="flex gap-4 flex-col lg:flex-row">
       {/* Left: player list */}
       <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72 overflow-hidden">
-        {/* Formation picker */}
+        {/* Header */}
         <div className="bg-cm-border px-3 py-1.5 flex items-center gap-3">
           <CMSelect
             label="Formation"
@@ -64,16 +62,28 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
           />
         </div>
 
+        {/* Rules explanation */}
+        <div className="px-3 py-2 bg-cm-bg border-b border-cm-border text-[10px] leading-relaxed text-white/40 italic">
+          {formation === '4-3-3' ? (
+            <p>
+              <span className="text-cm-cyan not-italic font-bold">4-3-3 Rules:</span> Midfielders can be any central type (CM/CDM/CAM). Wide striker slots accept both natural Wingers and Forwards.
+            </p>
+          ) : (
+            <p>
+              <span className="text-cm-cyan not-italic font-bold">4-4-2 Rules:</span> Wide midfield positions (LM/RM) strictly require natural Wingers (LW/RW).
+            </p>
+          )}
+        </div>
+
         {/* Player rows */}
         {xi.map(({ slot, playerScore: ps }, i) => (
           <div
             key={slot}
-            className={`grid grid-cols-[1.5rem_2rem_minmax(0,1fr)_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
+            className={`grid grid-cols-[1.5rem_minmax(0,1fr)_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
               i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
             }`}
           >
             <span className="text-white/40 text-xs">{i + 1}</span>
-            <span className="text-white/40 text-xs">{slot}</span>
             <span className={`font-bold truncate min-w-0 ${ps ? 'text-cm-cyan' : 'text-white/20'}`}>
               {ps ? ps.player.name : '—'}
             </span>

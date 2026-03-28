@@ -29,11 +29,11 @@ export function calculateScores(players: Player[], awards: Award[]): PlayerScore
       const hasYPOTY = seasonAwards.some((a) => a.type === 'YPOTY');
 
       if (hasPOTY) potyCount++;
-      if (hasTOTY && !hasPOTY) totyCount++; // TOTY only counts if no POTY that season
+      if (hasTOTY) totyCount++; 
       if (hasYPOTY) ypotyCount++;
     }
 
-    const score = potyCount * 4 + totyCount * 2 + ypotyCount;
+    const score = potyCount * 3 + totyCount * 1 + ypotyCount * 1;
 
     return { player, score, breakdown: { potyCount, totyCount, ypotyCount } };
   });
@@ -44,7 +44,9 @@ export function getRankedPlayers(players: Player[], awards: Award[]): PlayerScor
     .filter((ps) => ps.score > 0)
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
-      // Tiebreaker: appearances
-      return b.player.appearances - a.player.appearances;
+      if (b.breakdown.potyCount !== a.breakdown.potyCount) {
+        return b.breakdown.potyCount - a.breakdown.potyCount;
+      }
+      return b.breakdown.ypotyCount - a.breakdown.ypotyCount;
     });
 }
