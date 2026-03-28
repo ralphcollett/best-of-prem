@@ -1,86 +1,42 @@
 import { Position } from '../data/players';
 import { PlayerScore } from './scoring';
 
-export type Formation = '4-3-3' | '4-4-2' | '5-3-2';
-
 interface FormationSlot {
   slot: string;
   positions: Position[];
 }
 
-const FORMATIONS: Record<Formation, FormationSlot[]> = {
-  '4-3-3': [
-    { slot: 'GK',  positions: ['GK'] },
-    { slot: 'RB',  positions: ['RB'] },
-    { slot: 'CB1', positions: ['CB'] },
-    { slot: 'CB2', positions: ['CB'] },
-    { slot: 'LB',  positions: ['LB'] },
-    { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'RW',  positions: ['RW', 'ST'] }, // Wide strikers can be forwards or wingers
-    { slot: 'ST',  positions: ['ST'] },
-    { slot: 'LW',  positions: ['LW', 'ST'] }, // Wide strikers can be forwards or wingers
-  ],
-  '4-4-2': [
-    { slot: 'GK',  positions: ['GK'] },
-    { slot: 'RB',  positions: ['RB'] },
-    { slot: 'CB1', positions: ['CB'] },
-    { slot: 'CB2', positions: ['CB'] },
-    { slot: 'LB',  positions: ['LB'] },
-    { slot: 'RM',  positions: ['RW'] }, // Must have wingers wide
-    { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'LM',  positions: ['LW'] }, // Must have wingers wide
-    { slot: 'ST1', positions: ['ST'] },
-    { slot: 'ST2', positions: ['ST'] },
-  ],
-  '5-3-2': [
-    { slot: 'GK',  positions: ['GK'] },
-    { slot: 'RWB', positions: ['RB'] },
-    { slot: 'CB1', positions: ['CB'] },
-    { slot: 'CB2', positions: ['CB'] },
-    { slot: 'CB3', positions: ['CB'] },
-    { slot: 'LWB', positions: ['LB'] },
-    { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'ST1', positions: ['ST'] },
-    { slot: 'ST2', positions: ['ST'] },
-  ],
-};
+const FORMATION_SLOTS: FormationSlot[] = [
+  { slot: 'GK',  positions: ['GK'] },
+  { slot: 'RB',  positions: ['RB'] },
+  { slot: 'CB1', positions: ['CB'] },
+  { slot: 'CB2', positions: ['CB'] },
+  { slot: 'LB',  positions: ['LB'] },
+  { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
+  { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
+  { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
+  { slot: 'RW',  positions: ['RW', 'LW', 'ST'] },
+  { slot: 'ST',  positions: ['RW', 'LW', 'ST'] },
+  { slot: 'LW',  positions: ['RW', 'LW', 'ST'] },
+];
 
-export const PITCH_LAYOUTS: Record<Formation, string[][]> = {
-  '4-3-3': [
-    ['LW', 'ST', 'RW'],
-    ['CM1', 'CM2', 'CM3'],
-    ['LB', 'CB1', 'CB2', 'RB'],
-    ['GK'],
-  ],
-  '4-4-2': [
-    ['ST1', 'ST2'],
-    ['LM', 'CM1', 'CM2', 'RM'],
-    ['LB', 'CB1', 'CB2', 'RB'],
-    ['GK'],
-  ],
-  '5-3-2': [
-    ['ST1', 'ST2'],
-    ['CM1', 'CM2', 'CM3'],
-    ['LWB', 'CB1', 'CB2', 'CB3', 'RWB'],
-    ['GK'],
-  ],
-};
+export const PITCH_LAYOUT: string[][] = [
+  ['LW', 'ST', 'RW'],
+  ['CM1', 'CM2', 'CM3'],
+  ['LB', 'CB1', 'CB2', 'RB'],
+  ['GK'],
+];
 
 export interface XISlot {
   slot: string;
   playerScore: PlayerScore | null;
 }
 
-export function selectBestXI(rankedPlayers: PlayerScore[], formation: Formation = '4-3-3'): XISlot[] {
+export function selectBestXI(rankedPlayers: PlayerScore[]): XISlot[] {
   const used = new Set<string>();
   const result: XISlot[] = [];
 
-  for (const { slot, positions } of FORMATIONS[formation]) {
+  for (const { slot, positions } of FORMATION_SLOTS) {
     const candidate = rankedPlayers.find(
       (ps) => !used.has(ps.player.id) && positions.includes(ps.player.position)
     ) ?? null;

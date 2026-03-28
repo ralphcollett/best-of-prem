@@ -1,18 +1,10 @@
-import { Formation, PITCH_LAYOUTS, XISlot } from '../utils/bestXI';
+import { PITCH_LAYOUT, XISlot } from '../utils/bestXI';
 import { PlayerScore } from '../utils/scoring';
-import { CMSelect } from './CMSelect';
 
 interface Props {
   xi: XISlot[];
   subs: PlayerScore[];
-  formation: Formation;
-  onFormationChange: (f: Formation) => void;
 }
-
-const FORMATION_OPTIONS: { value: Formation; label: string }[] = [
-  { value: '4-3-3', label: '4-3-3' },
-  { value: '4-4-2', label: '4-4-2' },
-];
 
 // Shirt number by rank in the XI list
 function shirtNumber(xi: XISlot[], slot: string): number {
@@ -44,36 +36,14 @@ function EmptyCircle() {
   );
 }
 
-export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
-  const layout = PITCH_LAYOUTS[formation];
+export function BestXI({ xi, subs }: Props) {
+  const layout = PITCH_LAYOUT;
   const bySlot = Object.fromEntries(xi.map(s => [s.slot, s]));
 
   return (
     <div className="flex gap-4 flex-col lg:flex-row">
       {/* Left: player list */}
       <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72 overflow-hidden">
-        {/* Header */}
-        <div className="bg-cm-border px-3 py-1.5 flex items-center gap-3">
-          <CMSelect
-            label="Formation"
-            value={formation}
-            options={FORMATION_OPTIONS}
-            onChange={onFormationChange}
-          />
-        </div>
-
-        {/* Rules explanation */}
-        <div className="px-3 py-2 bg-cm-bg border-b border-cm-border text-[10px] leading-relaxed text-white/40 italic">
-          {formation === '4-3-3' ? (
-            <p>
-              <span className="text-cm-cyan not-italic font-bold">4-3-3 Rules:</span> Midfielders can be any central type (CM/CDM/CAM). Wide striker slots accept both natural Wingers and Forwards.
-            </p>
-          ) : (
-            <p>
-              <span className="text-cm-cyan not-italic font-bold">4-4-2 Rules:</span> Wide midfield positions (LM/RM) strictly require natural Wingers (LW/RW).
-            </p>
-          )}
-        </div>
 
         {/* Player rows */}
         {xi.map(({ slot, playerScore: ps }, i) => (
@@ -116,7 +86,7 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
       {/* Right: pitch */}
       <div className="border-2 border-cm-border flex-1">
         <div className="bg-cm-border px-3 py-1">
-          <span className="text-cm-yellow font-bold text-sm uppercase tracking-widest">Pitch View — {formation}</span>
+          <span className="text-cm-yellow font-bold text-sm uppercase tracking-widest">Pitch View — 4-3-3</span>
         </div>
 
         {/* Pitch */}

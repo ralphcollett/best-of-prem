@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { players } from './data/players';
 import { awards } from './data/awards';
 import { getRankedPlayers } from './utils/scoring';
-import { selectBestXI, selectSubs, Formation } from './utils/bestXI';
+import { selectBestXI, selectSubs } from './utils/bestXI';
 import { Leaderboard } from './components/Leaderboard';
 import { BestXI } from './components/BestXI';
 import { YearsPage } from './components/YearsPage';
@@ -11,10 +11,8 @@ type Tab = 'leaderboard' | 'xi' | 'years';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
-  const [formation, setFormation] = useState<Formation>('4-3-3');
-
   const ranked = useMemo(() => getRankedPlayers(players, awards), []);
-  const xi = useMemo(() => selectBestXI(ranked, formation), [ranked, formation]);
+  const xi = useMemo(() => selectBestXI(ranked), [ranked]);
   const subs = useMemo(() => {
     const usedIds = new Set(xi.map(s => s.playerScore?.player.id).filter(Boolean) as string[]);
     return selectSubs(ranked, usedIds);
@@ -54,7 +52,7 @@ export default function App() {
         {tab === 'leaderboard' ? (
           <Leaderboard ranked={ranked} awards={awards} />
         ) : tab === 'xi' ? (
-          <BestXI xi={xi} subs={subs} formation={formation} onFormationChange={setFormation} />
+          <BestXI xi={xi} subs={subs} />
         ) : (
           <YearsPage awards={awards} players={players} />
         )}
