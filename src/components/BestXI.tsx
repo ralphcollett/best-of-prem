@@ -1,5 +1,6 @@
 import { Formation, PITCH_LAYOUTS, XISlot } from '../utils/bestXI';
 import { PlayerScore } from '../utils/scoring';
+import { CMSelect } from './CMSelect';
 
 interface Props {
   xi: XISlot[];
@@ -7,7 +8,11 @@ interface Props {
   onFormationChange: (f: Formation) => void;
 }
 
-const FORMATIONS: Formation[] = ['4-3-3', '4-4-2', '5-3-2'];
+const FORMATION_OPTIONS: { value: Formation; label: string }[] = [
+  { value: '4-3-3', label: '4-3-3' },
+  { value: '4-4-2', label: '4-4-2' },
+  { value: '5-3-2', label: '5-3-2' },
+];
 
 // Shirt number by rank in the XI list
 function shirtNumber(xi: XISlot[], slot: string): number {
@@ -49,21 +54,13 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
       {/* Left: player list */}
       <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72">
         {/* Formation picker */}
-        <div className="bg-cm-border px-3 py-1 flex items-center justify-between">
-          <span className="text-cm-yellow font-bold text-sm uppercase tracking-widest">Formation</span>
-          <div className="flex">
-            {FORMATIONS.map(f => (
-              <button
-                key={f}
-                onClick={() => onFormationChange(f)}
-                className={`px-3 py-0.5 text-xs font-bold border-l border-cm-bg transition-none ${
-                  formation === f ? 'bg-cm-yellow text-black' : 'text-cm-cyan hover:bg-cm-border'
-                }`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
+        <div className="bg-cm-border px-3 py-1.5 flex items-center gap-3">
+          <CMSelect
+            label="Formation"
+            value={formation}
+            options={FORMATION_OPTIONS}
+            onChange={onFormationChange}
+          />
         </div>
 
         {/* Player rows */}

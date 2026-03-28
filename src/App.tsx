@@ -10,7 +10,7 @@ type Tab = 'leaderboard' | 'xi';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
-  const [formation, setFormation] = useState<Formation>('4-3-3');
+  const [formation, setFormation] = useState<Formation>('4-4-2');
 
   const ranked = useMemo(() => getRankedPlayers(players, awards), []);
   const xi = useMemo(() => selectBestXI(ranked, formation), [ranked, formation]);
