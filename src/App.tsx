@@ -8,9 +8,11 @@ import { BestXI } from './components/BestXI';
 import { YearsPage } from './components/YearsPage';
 
 type Tab = 'leaderboard' | 'xi' | 'years';
+type League = 'pl' | 'wsl';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
+  const [league, setLeague] = useState<League>('pl');
   const ranked = useMemo(() => getRankedPlayers(players, awards), []);
   const xi = useMemo(() => selectBestXI(ranked), [ranked]);
   const subs = useMemo(() => {
@@ -21,10 +23,30 @@ export default function App() {
   return (
     <div className="min-h-screen bg-cm-bg font-mono text-white">
       {/* Title bar */}
-      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2">
-        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center">
-          Premier League All-Time Select
+      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2 flex items-center justify-between gap-4">
+        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide flex-1 text-center">
+          {league === 'pl' ? 'Premier League' : 'Women\'s Super League'} All-Time Select
         </h1>
+        {/* League toggle */}
+        <div className="flex-shrink-0 flex border-2 border-cm-yellow">
+          <button
+            onClick={() => setLeague('pl')}
+            className={`px-3 py-0.5 text-xs font-bold uppercase tracking-widest transition-none ${
+              league === 'pl' ? 'bg-cm-yellow text-black' : 'text-cm-yellow hover:bg-yellow-600/30'
+            }`}
+          >
+            PL
+          </button>
+          <div className="w-px bg-cm-yellow" />
+          <button
+            onClick={() => setLeague('wsl')}
+            className={`px-3 py-0.5 text-xs font-bold uppercase tracking-widest transition-none ${
+              league === 'wsl' ? 'bg-cm-yellow text-black' : 'text-cm-yellow hover:bg-yellow-600/30'
+            }`}
+          >
+            WSL
+          </button>
+        </div>
       </div>
 
       {/* Tab bar */}
@@ -49,7 +71,12 @@ export default function App() {
 
       {/* Content */}
       <main className="max-w-5xl mx-auto px-2 sm:px-4 py-3 sm:py-6">
-        {tab === 'leaderboard' ? (
+        {league === 'wsl' ? (
+          <div className="border-2 border-cm-border p-8 text-center">
+            <div className="text-cm-yellow font-bold text-xl uppercase tracking-widest mb-2">WSL</div>
+            <div className="text-white/50 text-sm">Data coming soon</div>
+          </div>
+        ) : tab === 'leaderboard' ? (
           <Leaderboard ranked={ranked} awards={awards} />
         ) : tab === 'xi' ? (
           <BestXI xi={xi} subs={subs} />

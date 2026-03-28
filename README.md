@@ -323,3 +323,116 @@ All award data lives in `src/data/awards.ts`. Player details (positions, appeara
 To add a new season:
 1. Add any new players to `src/data/players.ts`
 2. Add POTY, YPOTY, and TOTY entries for the season to `src/data/awards.ts`
+
+---
+
+## WSL Awards History
+
+Data covers the full FA Women's Super League era. The PFA Women's POTY award began in 2012–13; YPOTY and TOTY began in 2013–14.
+
+### PFA Women's Players' Player of the Year
+| Year | Player | Team |
+| :--- | :--- | :--- |
+| 2012–13 | Kim Little | Arsenal |
+| 2013–14 | Lucy Bronze | Liverpool |
+| 2014–15 | Ji So-yun | Chelsea |
+| 2015–16 | Izzy Christiansen | Manchester City |
+| 2016–17 | Lucy Bronze | Manchester City |
+| 2017–18 | Fran Kirby | Chelsea |
+| 2018–19 | Vivianne Miedema | Arsenal |
+| 2019–20 | Bethany England | Chelsea |
+| 2020–21 | Fran Kirby | Chelsea |
+| 2021–22 | Sam Kerr | Chelsea |
+| 2022–23 | Rachel Daly | Aston Villa |
+| 2023–24 | Khadija Shaw | Manchester City |
+| 2024–25 | Mariona Caldentey | Arsenal |
+
+### PFA Women's Young Player of the Year
+| Year | Player | Team |
+| :--- | :--- | :--- |
+| 2013–14 | Martha Harris | Liverpool |
+| 2014–15 | Leah Williamson | Arsenal |
+| 2015–16 | Beth Mead | Sunderland |
+| 2016–17 | Jess Carter | Birmingham City |
+| 2017–18 | Lauren Hemp | Bristol City |
+| 2018–19 | Georgia Stanway | Manchester City |
+| 2019–20 | Lauren Hemp | Manchester City |
+| 2020–21 | Lauren Hemp | Manchester City |
+| 2021–22 | Lauren Hemp | Manchester City |
+| 2022–23 | Lauren James | Chelsea |
+| 2023–24 | Grace Clinton | Tottenham Hotspur |
+| 2024–25 | Olivia Smith | Liverpool |
+
+### PFA Women's Team of the Year (WSL)
+
+**2024–25**
+- GK: Phallon Tullis-Joyce (Manchester United)
+- DF: Emily Fox (Arsenal), Maya Le Tissier (Manchester United), Millie Bright (Chelsea), Jayde Riviere (Manchester United)
+- MF: Yui Hasegawa (Manchester City), Erin Cuthbert (Chelsea), Kim Little (Arsenal)
+- FW: Mariona Caldentey (Arsenal), Alessia Russo (Arsenal), Mary Fowler (Manchester City)
+
+**2023–24**
+- GK: Khiara Keating (Manchester City)
+- DF: Alex Greenwood (Manchester City), Niamh Charles (Chelsea), Laia Aleixandri (Manchester City), Lotte Wubben-Moy (Arsenal)
+- MF: Yui Hasegawa (Manchester City), Erin Cuthbert (Chelsea), Grace Clinton (Tottenham Hotspur)
+- FW: Khadija Shaw (Manchester City), Lauren James (Chelsea), Lauren Hemp (Manchester City)
+
+**2022–23**
+- GK: Mary Earps (Manchester United)
+- DF: Rafaelle Souza (Arsenal), Alex Greenwood (Manchester City), Maya Le Tissier (Manchester United), Ona Batlle (Manchester United)
+- MF: Yui Hasegawa (Manchester City), Guro Reiten (Chelsea), Frida Maanum (Arsenal)
+- FW: Sam Kerr (Chelsea), Khadija Shaw (Manchester City), Rachel Daly (Aston Villa)
+
+**2021–22**
+- GK: Ann-Katrin Berger (Chelsea)
+- DF: Ona Batlle (Manchester United), Millie Bright (Chelsea), Leah Williamson (Arsenal), Alex Greenwood (Manchester City)
+- MF: Guro Reiten (Chelsea), Caroline Weir (Manchester City), Kim Little (Arsenal)
+- FW: Vivianne Miedema (Arsenal), Sam Kerr (Chelsea), Lauren Hemp (Manchester City)
+
+**2020–21**
+- GK: Ann-Katrin Berger (Chelsea)
+- DF: Katie McCabe (Arsenal), Leah Williamson (Arsenal), Magdalena Eriksson (Chelsea), Maren Mjelde (Chelsea)
+- MF: Sam Mewis (Manchester City), Caroline Weir (Manchester City), Fran Kirby (Chelsea), Sam Kerr (Chelsea)
+- FW: Chloe Kelly (Manchester City), Lauren Hemp (Manchester City)
+
+**2019–20**
+- GK: Ann-Katrin Berger (Chelsea)
+- DF: Maren Mjelde (Chelsea), Millie Bright (Chelsea), Leah Williamson (Arsenal), Magdalena Eriksson (Chelsea)
+- MF: Ji So-yun (Chelsea), Kim Little (Arsenal), Caroline Weir (Manchester City)
+- FW: Vivianne Miedema (Arsenal), Chloe Kelly (Manchester City), Bethany England (Chelsea)
+
+**2018–19**
+- GK: Sophie Baggaley (Bristol City)
+- DF: Hannah Blundell (Chelsea), Aoife Mannion (Birmingham City), Steph Houghton (Manchester City), Demi Stokes (Manchester City)
+- MF: Ji So-yun (Chelsea), Kim Little (Arsenal), Lia Wälti (Arsenal)
+- FW: Erin Cuthbert (Chelsea), Nikita Parris (Manchester City), Vivianne Miedema (Arsenal)
+
+**2017–18**
+- GK: Ann-Katrin Berger (Birmingham City)
+- DF: Demi Stokes (Manchester City), Millie Bright (Chelsea), Aoife Mannion (Birmingham City), Hannah Blundell (Chelsea)
+- MF: Maren Mjelde (Chelsea), Ji So-yun (Chelsea), Fara Williams (Reading)
+- FW: Beth Mead (Arsenal), Ellen White (Birmingham City), Fran Kirby (Chelsea)
+
+**2016–17**
+- GK: Mary Earps (Reading)
+- DF: Lucy Bronze (Manchester City), Jen Beattie (Manchester City), Steph Houghton (Manchester City), Jessica Carter (Birmingham City)
+- MF: Karen Carney (Chelsea), Jill Scott (Manchester City), Jordan Nobbs (Arsenal), Caroline Weir (Liverpool)
+- FW: Jane Ross (Manchester City), Eniola Aluko (Chelsea)
+
+**2015–16**
+- GK: Hedvig Lindahl (Chelsea)
+- DF: Lucy Bronze (Manchester City), Casey Stoney (Arsenal), Niamh Fahey (Chelsea), Alex Greenwood (Notts County)
+- MF: Ji So-yun (Chelsea), Vicky Losada (Arsenal), Jill Scott (Manchester City), Izzy Christiansen (Manchester City)
+- FW: Danielle Carter (Arsenal), Beth Mead (Sunderland)
+
+**2014–15**
+- GK: Carly Telford (Notts County)
+- DF: Lucy Bronze (Liverpool), Casey Stoney (Arsenal), Rachel Corsie (Notts County), Emma Mitchell (Arsenal)
+- MF: Ji So-yun (Chelsea), Jill Scott (Manchester City), Jo Potter (Birmingham City), Karen Carney (Birmingham City)
+- FW: Nikita Parris (Everton), Eniola Aluko (Chelsea)
+
+**2013–14**
+- GK: Siobhan Chamberlain (Bristol Academy)
+- DF: Lucy Bronze (Liverpool), Martha Harris (Lincoln Ladies), Jemma Rose (Bristol Academy), Gemma Bonner (Liverpool)
+- MF: Fara Williams (Liverpool), Jordan Nobbs (Arsenal), Nicole Rolser (Liverpool), Gemma Davison (Arsenal)
+- FW: Danielle Carter (Arsenal), Natasha Dowie (Liverpool)
