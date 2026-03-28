@@ -44,13 +44,13 @@ export default function App() {
             {label}
           </button>
         ))}
-        <div className="flex-1 flex items-center justify-end px-4">
+        <div className="flex-1 hidden sm:flex items-center justify-end px-4">
           <span className="text-cm-cyan text-xs">PFA Awards 1992–2025 &nbsp;|&nbsp; Player of Year 3pts · Team of Year 1pt · Young Player of Year 1pt</span>
         </div>
       </div>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-4 py-6">
+      <main className="max-w-5xl mx-auto px-2 sm:px-4 py-3 sm:py-6">
         {tab === 'leaderboard' ? (
           <Leaderboard ranked={ranked} awards={awards} />
         ) : tab === 'xi' ? (

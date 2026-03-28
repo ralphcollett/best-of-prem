@@ -80,14 +80,18 @@ export function Leaderboard({ ranked, awards }: Props) {
         </span>
       </div>
 
-      {/* Column headings */}
-      <div className="grid grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem] gap-x-2 bg-cm-panel border-b border-cm-border px-2 py-1 text-[10px] text-white/50 uppercase sticky top-0 z-10">
-        <span>Pos</span>
-        <span>Pos</span>
+      {/* Column headings — mobile: rank | player | poty | toty | pts; desktop: + pos + club + ypoty */}
+      <div className="
+        grid gap-x-2 bg-cm-panel border-b border-cm-border px-2 py-1 text-[10px] text-white/50 uppercase sticky top-0 z-10
+        grid-cols-[2.5rem_minmax(0,1fr)_2.5rem_2.5rem_3rem]
+        sm:grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
+      ">
+        <span>Rank</span>
+        <span className="hidden sm:block">Pos</span>
         <span className="min-w-0">Player</span>
-        <span className="min-w-0">Award Club(s)*</span>
+        <span className="min-w-0 hidden sm:block">Award Club(s)*</span>
         <span className="text-center">POTY</span>
-        <span className="text-center">YPOTY</span>
+        <span className="text-center hidden sm:block">YPOTY</span>
         <span className="text-center">TOTY</span>
         <span className="text-right">Pts</span>
       </div>
@@ -95,17 +99,23 @@ export function Leaderboard({ ranked, awards }: Props) {
       {rows.map((ps, i) => (
         <div
           key={ps.player.id}
-          className={`grid grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem] gap-x-2 px-2 py-1 text-sm border-b border-cm-border items-center ${
-            i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
-          } hover:bg-cm-border transition-none`}
+          className={`
+            grid gap-x-2 px-2 py-1.5 text-sm border-b border-cm-border items-center
+            grid-cols-[2.5rem_minmax(0,1fr)_2.5rem_2.5rem_3rem]
+            sm:grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
+            ${i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'} hover:bg-cm-border transition-none
+          `}
         >
           <span className="text-white/40 text-xs">{getRankDisplay(i)}</span>
-          <span className="text-xs text-white/40">{ps.player.position}</span>
-          <span className="text-cm-cyan font-bold truncate min-w-0 pr-2">{ps.player.name}</span>
-          <span className="text-white/70 text-xs truncate min-w-0 pr-2">{getPlayerClubs(ps.player.id)}</span>
+          <span className="text-xs text-white/40 hidden sm:block">{ps.player.position}</span>
+          <div className="min-w-0 pr-1">
+            <div className="text-cm-cyan font-bold truncate">{ps.player.name}</div>
+            <div className="text-white/30 text-[10px] sm:hidden">{ps.player.position}</div>
+          </div>
+          <span className="text-white/70 text-xs truncate min-w-0 pr-2 hidden sm:block">{getPlayerClubs(ps.player.id)}</span>
 
           <span className="text-center text-cm-yellow font-bold">{ps.breakdown.potyCount || '—'}</span>
-          <span className="text-center text-white/40">{ps.breakdown.ypotyCount || '—'}</span>
+          <span className="text-center text-white/40 hidden sm:block">{ps.breakdown.ypotyCount || '—'}</span>
           <span className="text-center text-white/60">{ps.breakdown.totyCount || '—'}</span>
 
           <span className="text-cm-yellow font-bold text-right">{ps.score}</span>
