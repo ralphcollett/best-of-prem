@@ -4,9 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'pl-purple': '#38003c',
-        'pl-green': '#00ff85',
-        'pl-white': '#ffffff',
+        'cm-bg':     '#000c1a',
+        'cm-panel':  '#000818',
+        'cm-border': '#003366',
+        'cm-yellow': '#ffff00',
+        'cm-cyan':   '#00ccff',
+        'cm-red':    '#cc0000',
+        'cm-green':  '#006400',
+        'cm-pitch':  '#007a00',
+      },
+      fontFamily: {
+        mono: ['"Courier New"', 'Courier', 'monospace'],
       },
     },
   },

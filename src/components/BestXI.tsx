@@ -9,16 +9,33 @@ interface Props {
 
 const FORMATIONS: Formation[] = ['4-3-3', '4-4-2', '5-3-2'];
 
-function PlayerTile({ ps, slot }: { ps: PlayerScore; slot: string }) {
+// Shirt number by rank in the XI list
+function shirtNumber(xi: XISlot[], slot: string): number {
+  const idx = xi.findIndex(s => s.slot === slot);
+  return idx + 1;
+}
+
+function PlayerCircle({ ps, num }: { ps: PlayerScore; num: number }) {
   return (
-    <div className="flex flex-col items-center gap-1 group">
-      <div className="w-14 h-14 rounded-full bg-pl-purple border-2 border-pl-green flex items-center justify-center text-xs font-bold text-white shadow-lg group-hover:scale-110 transition-transform">
-        {slot}
+    <div className="flex flex-col items-center gap-0.5">
+      <div className="w-10 h-10 rounded-full bg-cm-red border-2 border-white flex items-center justify-center text-sm font-bold text-white shadow">
+        {num}
       </div>
-      <span className="text-white text-xs font-semibold text-center leading-tight w-20 truncate">
+      <span className="text-cm-cyan text-xs font-bold text-center leading-tight w-16 truncate text-center">
         {ps.player.name.split(' ').pop()}
       </span>
-      <span className="text-pl-green text-xs font-black">{ps.score}pts</span>
+      <span className="text-cm-yellow text-xs font-bold">{ps.score}pts</span>
+    </div>
+  );
+}
+
+function EmptyCircle({ slot }: { slot: string }) {
+  return (
+    <div className="flex flex-col items-center gap-0.5">
+      <div className="w-10 h-10 rounded-full border-2 border-dashed border-white/30 flex items-center justify-center text-white/20 text-xs">
+        ?
+      </div>
+      <span className="text-white/20 text-xs">{slot}</span>
     </div>
   );
 }
@@ -28,57 +45,89 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
   const bySlot = Object.fromEntries(xi.map(s => [s.slot, s]));
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-        <h2 className="text-2xl font-bold text-pl-green">Best Starting XI</h2>
+    <div className="flex gap-4 flex-col lg:flex-row">
+      {/* Left: player list */}
+      <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72">
         {/* Formation picker */}
-        <div className="flex gap-1 bg-white/5 rounded-xl p-1">
-          {FORMATIONS.map(f => (
-            <button
-              key={f}
-              onClick={() => onFormationChange(f)}
-              className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${
-                formation === f
-                  ? 'bg-pl-green text-pl-purple shadow'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {f}
-            </button>
-          ))}
+        <div className="bg-cm-border px-3 py-1 flex items-center justify-between">
+          <span className="text-cm-yellow font-bold text-sm uppercase tracking-widest">Formation</span>
+          <div className="flex">
+            {FORMATIONS.map(f => (
+              <button
+                key={f}
+                onClick={() => onFormationChange(f)}
+                className={`px-3 py-0.5 text-xs font-bold border-l border-cm-bg transition-none ${
+                  formation === f ? 'bg-cm-yellow text-black' : 'text-cm-cyan hover:bg-cm-border'
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Player rows */}
+        {xi.map(({ slot, playerScore: ps }, i) => (
+          <div
+            key={slot}
+            className={`grid grid-cols-[1.5rem_2rem_1fr_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
+              i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
+            }`}
+          >
+            <span className="text-white/40 text-xs">{i + 1}</span>
+            <span className="text-white/40 text-xs">{slot}</span>
+            <span className={`font-bold truncate ${ps ? 'text-cm-cyan' : 'text-white/20'}`}>
+              {ps ? ps.player.name : '—'}
+            </span>
+            <span className="text-cm-yellow text-xs font-bold text-right">
+              {ps ? ps.score : ''}
+            </span>
+          </div>
+        ))}
       </div>
 
-      {/* Pitch */}
-      <div className="relative rounded-2xl overflow-hidden border border-white/10">
+      {/* Right: pitch */}
+      <div className="border-2 border-cm-border flex-1">
+        <div className="bg-cm-border px-3 py-1">
+          <span className="text-cm-yellow font-bold text-sm uppercase tracking-widest">Pitch View — {formation}</span>
+        </div>
+
+        {/* Pitch */}
         <div
-          className="w-full"
+          className="relative w-full"
           style={{
-            background: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px), linear-gradient(180deg, #1a4a2a 0%, #1e5530 50%, #1a4a2a 100%)',
+            background: '#007a00',
             minHeight: '420px',
           }}
         >
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-24 h-24 rounded-full border border-white/10" />
+          {/* Pitch markings */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Outline */}
+            <div className="absolute inset-3 border border-white/40" />
+            {/* Centre line */}
+            <div className="absolute left-3 right-3 top-1/2 h-px bg-white/40" />
+            {/* Centre circle */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full border border-white/40" />
+            </div>
+            {/* Penalty areas */}
+            <div className="absolute left-1/4 right-1/4 top-3 h-14 border border-white/30" />
+            <div className="absolute left-1/4 right-1/4 bottom-3 h-14 border border-white/30" />
           </div>
-          <div className="absolute left-0 right-0 top-1/2 h-px bg-white/10" />
 
-          <div className="relative z-10 flex flex-col justify-around py-8 px-4 h-full min-h-[420px]">
+          {/* Players */}
+          <div className="relative z-10 flex flex-col justify-around py-6 px-2 min-h-[420px]">
             {layout.map((row, r) => (
               <div key={r} className="flex justify-around items-center">
                 {row.map(slotName => {
                   const entry = bySlot[slotName];
+                  const num = shirtNumber(xi, slotName);
                   return (
-                    <div key={slotName} className="w-20 flex justify-center">
-                      {entry?.playerScore ? (
-                        <PlayerTile ps={entry.playerScore} slot={slotName} />
-                      ) : (
-                        <div className="flex flex-col items-center gap-1">
-                          <div className="w-14 h-14 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center text-white/20 text-xs">
-                            {slotName}
-                          </div>
-                        </div>
-                      )}
+                    <div key={slotName} className="flex justify-center w-20">
+                      {entry?.playerScore
+                        ? <PlayerCircle ps={entry.playerScore} num={num} />
+                        : <EmptyCircle slot={slotName} />
+                      }
                     </div>
                   );
                 })}
@@ -86,17 +135,6 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* XI list */}
-      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2">
-        {xi.filter(s => s.playerScore).map(({ slot, playerScore: ps }) => (
-          <div key={slot} className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2">
-            <span className="text-white/40 text-xs w-10 shrink-0">{slot}</span>
-            <span className="text-white text-sm font-semibold truncate">{ps!.player.name}</span>
-            <span className="ml-auto text-pl-green text-xs font-bold shrink-0">{ps!.score}</span>
-          </div>
-        ))}
       </div>
     </div>
   );

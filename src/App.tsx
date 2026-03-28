@@ -16,52 +16,42 @@ export default function App() {
   const xi = useMemo(() => selectBestXI(ranked, formation), [ranked, formation]);
 
   return (
-    <div className="min-h-screen bg-pl-purple text-white">
-      {/* Header */}
-      <header className="border-b border-white/10">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-baseline gap-3">
-            <span className="text-pl-green text-3xl font-black tracking-tight">Premier League</span>
-            <span className="text-white/60 text-lg">All-Time Rankings</span>
-          </div>
-          <p className="text-white/40 text-sm mt-1">
-            Ranked by PFA awards — Player of the Year (4pts) · Team of the Year (2pts) · Young Player of the Year (1pt)
-          </p>
-        </div>
-      </header>
+    <div className="min-h-screen bg-cm-bg font-mono text-white">
+      {/* Title bar */}
+      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2">
+        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center">
+          Premier League All-Time Select
+        </h1>
+      </div>
 
-      {/* Tabs */}
-      <div className="max-w-4xl mx-auto px-4 mt-6">
-        <div className="flex gap-1 bg-white/5 rounded-xl p-1 w-fit">
-          {(['leaderboard', 'xi'] as Tab[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${
-                tab === t
-                  ? 'bg-pl-green text-pl-purple shadow'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {t === 'leaderboard' ? 'Top 10' : 'Best XI'}
-            </button>
-          ))}
+      {/* Tab bar */}
+      <div className="bg-cm-panel border-b-2 border-cm-border flex">
+        {([['leaderboard', 'Top 10 Players'], ['xi', 'Best XI']] as [Tab, string][]).map(([t, label]) => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            className={`px-6 py-1.5 text-sm font-bold border-r border-cm-border transition-none ${
+              tab === t
+                ? 'bg-cm-yellow text-black'
+                : 'text-cm-cyan hover:bg-cm-border'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+        <div className="flex-1 flex items-center justify-end px-4">
+          <span className="text-cm-cyan text-xs">PFA Awards 1992–2025 &nbsp;|&nbsp; POTY 4pts · TOTY 2pts · YPOTY 1pt</span>
         </div>
       </div>
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-5xl mx-auto px-4 py-6">
         {tab === 'leaderboard' ? (
           <Leaderboard ranked={ranked} />
         ) : (
           <BestXI xi={xi} formation={formation} onFormationChange={setFormation} />
         )}
       </main>
-
-      <footer className="max-w-4xl mx-auto px-4 pb-8 text-white/20 text-xs">
-        Awards data: PFA Players' Player of the Year, PFA Team of the Year, PFA Young Player of the Year (1992–2024).
-        TOTY points not awarded in seasons where the player also won POTY.
-      </footer>
     </div>
   );
 }
