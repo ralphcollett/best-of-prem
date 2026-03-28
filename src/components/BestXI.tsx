@@ -53,7 +53,7 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
   return (
     <div className="flex gap-4 flex-col lg:flex-row">
       {/* Left: player list */}
-      <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72">
+      <div className="border-2 border-cm-border flex-shrink-0 w-full lg:w-72 overflow-hidden">
         {/* Formation picker */}
         <div className="bg-cm-border px-3 py-1.5 flex items-center gap-3">
           <CMSelect
@@ -68,13 +68,13 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
         {xi.map(({ slot, playerScore: ps }, i) => (
           <div
             key={slot}
-            className={`grid grid-cols-[1.5rem_2rem_1fr_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
+            className={`grid grid-cols-[1.5rem_2rem_minmax(0,1fr)_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
               i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
             }`}
           >
             <span className="text-white/40 text-xs">{i + 1}</span>
             <span className="text-white/40 text-xs">{slot}</span>
-            <span className={`font-bold truncate ${ps ? 'text-cm-cyan' : 'text-white/20'}`}>
+            <span className={`font-bold truncate min-w-0 ${ps ? 'text-cm-cyan' : 'text-white/20'}`}>
               {ps ? ps.player.name : '—'}
             </span>
             <span className="text-cm-yellow text-xs font-bold text-right">
@@ -92,7 +92,7 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
         {subs.map((ps, i) => (
           <div
             key={ps.player.id}
-            className={`grid grid-cols-[1.5rem_1fr_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
+            className={`grid grid-cols-[1.5rem_minmax(0,1fr)_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
               i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
             } opacity-50`}
           >
