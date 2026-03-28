@@ -19,7 +19,7 @@ Data covers the full Premier League era: 1992–93 to 2024–25.
 
 ## Features
 
-- **Top 10 leaderboard** — ranked by points with per-player award breakdown
+- **All-time leaderboard** — all ranked players, sorted by points, with per-player award breakdown
 - **Best XI** — auto-selected 4-3-3 using the highest-scoring eligible player per position slot
 
 ## Tech Stack
