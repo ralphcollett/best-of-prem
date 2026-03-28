@@ -4,6 +4,7 @@ import { CMSelect } from './CMSelect';
 
 interface Props {
   xi: XISlot[];
+  subs: PlayerScore[];
   formation: Formation;
   onFormationChange: (f: Formation) => void;
 }
@@ -45,7 +46,7 @@ function EmptyCircle({ slot }: { slot: string }) {
   );
 }
 
-export function BestXI({ xi, formation, onFormationChange }: Props) {
+export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
   const layout = PITCH_LAYOUTS[formation];
   const bySlot = Object.fromEntries(xi.map(s => [s.slot, s]));
 
@@ -79,6 +80,25 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
             <span className="text-cm-yellow text-xs font-bold text-right">
               {ps ? ps.score : ''}
             </span>
+          </div>
+        ))}
+
+        {/* Subs divider */}
+        <div className="bg-cm-border px-2 py-0.5">
+          <span className="text-white/50 text-xs uppercase tracking-widest">Substitutes</span>
+        </div>
+
+        {/* Sub rows — greyed out */}
+        {subs.map((ps, i) => (
+          <div
+            key={ps.player.id}
+            className={`grid grid-cols-[1.5rem_1fr_2rem] px-2 py-1 text-sm border-b border-cm-border items-center ${
+              i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'
+            } opacity-50`}
+          >
+            <span className="text-white/40 text-xs">{xi.length + i + 1}</span>
+            <span className="text-white/60 font-bold truncate">{ps.player.name}</span>
+            <span className="text-white/40 text-xs font-bold text-right">{ps.score}</span>
           </div>
         ))}
       </div>

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { players } from './data/players';
 import { awards } from './data/awards';
 import { getRankedPlayers } from './utils/scoring';
-import { selectBestXI, Formation } from './utils/bestXI';
+import { selectBestXI, selectSubs, Formation } from './utils/bestXI';
 import { Leaderboard } from './components/Leaderboard';
 import { BestXI } from './components/BestXI';
 
@@ -14,6 +14,10 @@ export default function App() {
 
   const ranked = useMemo(() => getRankedPlayers(players, awards), []);
   const xi = useMemo(() => selectBestXI(ranked, formation), [ranked, formation]);
+  const subs = useMemo(() => {
+    const usedIds = new Set(xi.map(s => s.playerScore?.player.id).filter(Boolean) as string[]);
+    return selectSubs(ranked, usedIds);
+  }, [ranked, xi]);
 
   return (
     <div className="min-h-screen bg-cm-bg font-mono text-white">
@@ -49,7 +53,7 @@ export default function App() {
         {tab === 'leaderboard' ? (
           <Leaderboard ranked={ranked} />
         ) : (
-          <BestXI xi={xi} formation={formation} onFormationChange={setFormation} />
+          <BestXI xi={xi} subs={subs} formation={formation} onFormationChange={setFormation} />
         )}
       </main>
     </div>

@@ -94,3 +94,32 @@ export function selectBestXI(rankedPlayers: PlayerScore[], formation: Formation 
 
   return result;
 }
+
+const ANY: Position[] = ['GK', 'RB', 'CB', 'LB', 'CM', 'CDM', 'CAM', 'RW', 'LW', 'ST'];
+
+const SUB_SLOTS: { positions: Position[] }[] = [
+  { positions: ['GK'] }, // guaranteed GK
+  { positions: ANY },
+  { positions: ANY },
+  { positions: ANY },
+  { positions: ANY },
+  { positions: ANY },
+  { positions: ANY },
+];
+
+export function selectSubs(rankedPlayers: PlayerScore[], usedIds: Set<string>): PlayerScore[] {
+  const used = new Set(usedIds);
+  const subs: PlayerScore[] = [];
+
+  for (const { positions } of SUB_SLOTS) {
+    const candidate = rankedPlayers.find(
+      (ps) => !used.has(ps.player.id) && positions.includes(ps.player.position)
+    );
+    if (candidate) {
+      used.add(candidate.player.id);
+      subs.push(candidate);
+    }
+  }
+
+  return subs;
+}
