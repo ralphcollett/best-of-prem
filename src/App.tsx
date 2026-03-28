@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { players } from './data/players';
 import { awards } from './data/awards';
+import { wslPlayers } from './data/wsl-players';
+import { wslAwards } from './data/wsl-awards';
 import { getRankedPlayers } from './utils/scoring';
 import { selectBestXI, selectSubs } from './utils/bestXI';
 import { Leaderboard } from './components/Leaderboard';
@@ -13,7 +15,11 @@ type League = 'pl' | 'wsl';
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
   const [league, setLeague] = useState<League>('pl');
-  const ranked = useMemo(() => getRankedPlayers(players, awards), []);
+
+  const activePlayers = league === 'pl' ? players : wslPlayers;
+  const activeAwards  = league === 'pl' ? awards  : wslAwards;
+
+  const ranked = useMemo(() => getRankedPlayers(activePlayers, activeAwards), [activePlayers, activeAwards]);
   const xi = useMemo(() => selectBestXI(ranked), [ranked]);
   const subs = useMemo(() => {
     const usedIds = new Set(xi.map(s => s.playerScore?.player.id).filter(Boolean) as string[]);
@@ -23,29 +29,24 @@ export default function App() {
   return (
     <div className="min-h-screen bg-cm-bg font-mono text-white">
       {/* Title bar */}
-      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2 flex items-center justify-between gap-4">
-        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide flex-1 text-center">
+      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2">
+        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center">
           {league === 'pl' ? 'Premier League' : 'Women\'s Super League'} All-Time Select
         </h1>
-        {/* League toggle */}
-        <div className="flex-shrink-0 flex border-2 border-cm-yellow">
-          <button
-            onClick={() => setLeague('pl')}
-            className={`px-3 py-0.5 text-xs font-bold uppercase tracking-widest transition-none ${
-              league === 'pl' ? 'bg-cm-yellow text-black' : 'text-cm-yellow hover:bg-yellow-600/30'
-            }`}
+      </div>
+
+      {/* League selector */}
+      <div className="bg-cm-red border-b-2 border-yellow-600 flex justify-center py-2">
+        <div className="relative">
+          <select
+            value={league}
+            onChange={e => setLeague(e.target.value as League)}
+            className="bg-neutral-600 text-white font-mono font-bold text-sm uppercase tracking-widest border-2 border-neutral-400 px-3 py-1 pr-8 cursor-pointer outline-none hover:bg-neutral-500 appearance-none"
           >
-            PL
-          </button>
-          <div className="w-px bg-cm-yellow" />
-          <button
-            onClick={() => setLeague('wsl')}
-            className={`px-3 py-0.5 text-xs font-bold uppercase tracking-widest transition-none ${
-              league === 'wsl' ? 'bg-cm-yellow text-black' : 'text-cm-yellow hover:bg-yellow-600/30'
-            }`}
-          >
-            WSL
-          </button>
+            <option value="pl">Men's Premier League</option>
+            <option value="wsl">Women's Super League</option>
+          </select>
+          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-white/70 text-xs">▼</span>
         </div>
       </div>
 
@@ -71,17 +72,12 @@ export default function App() {
 
       {/* Content */}
       <main className="max-w-5xl mx-auto px-2 sm:px-4 py-3 sm:py-6">
-        {league === 'wsl' ? (
-          <div className="border-2 border-cm-border p-8 text-center">
-            <div className="text-cm-yellow font-bold text-xl uppercase tracking-widest mb-2">WSL</div>
-            <div className="text-white/50 text-sm">Data coming soon</div>
-          </div>
-        ) : tab === 'leaderboard' ? (
-          <Leaderboard ranked={ranked} awards={awards} />
+        {tab === 'leaderboard' ? (
+          <Leaderboard ranked={ranked} awards={activeAwards} />
         ) : tab === 'xi' ? (
           <BestXI xi={xi} subs={subs} />
         ) : (
-          <YearsPage awards={awards} players={players} />
+          <YearsPage awards={activeAwards} players={activePlayers} />
         )}
       </main>
     </div>
