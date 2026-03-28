@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import { players } from './data/players';
 import { awards } from './data/awards';
 import { wslPlayers } from './data/wsl-players';
@@ -15,6 +15,18 @@ type League = 'pl' | 'wsl';
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
   const [league, setLeague] = useState<League>('pl');
+  const [leagueOpen, setLeagueOpen] = useState(false);
+  const leagueRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (leagueRef.current && !leagueRef.current.contains(e.target as Node)) {
+        setLeagueOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   const activePlayers = league === 'pl' ? players : wslPlayers;
   const activeAwards  = league === 'pl' ? awards  : wslAwards;
@@ -29,24 +41,49 @@ export default function App() {
   return (
     <div className="min-h-screen bg-cm-bg font-mono text-white">
       {/* Title bar */}
-      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2">
-        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center">
-          {league === 'pl' ? 'Premier League' : 'Women\'s Super League'} All-Time Select
+      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2 flex items-center justify-between">
+        <div className="w-40" />
+        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center flex-1">
+          {league === 'pl' ? 'Premier League' : "Women's Super League"} All-Time Select
         </h1>
-      </div>
-
-      {/* League selector */}
-      <div className="bg-cm-red border-b-2 border-yellow-600 flex justify-center py-2">
-        <div className="relative">
-          <select
-            value={league}
-            onChange={e => setLeague(e.target.value as League)}
-            className="bg-neutral-600 text-white font-mono font-bold text-sm uppercase tracking-widest border-2 border-neutral-400 px-3 py-1 pr-8 cursor-pointer outline-none hover:bg-neutral-500 appearance-none"
-          >
-            <option value="pl">Men's Premier League</option>
-            <option value="wsl">Women's Super League</option>
-          </select>
-          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-white/70 text-xs">▼</span>
+        {/* League dropdown */}
+        <div className="w-40 flex justify-end">
+          <div ref={leagueRef} className="relative flex items-center gap-2">
+            <div
+              className="relative inline-flex items-stretch text-black text-xs font-mono cursor-pointer"
+              style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080', background: '#c0c0c0' }}
+              onClick={() => setLeagueOpen(o => !o)}
+            >
+              <span className="pl-1.5 pr-7 py-0.5 whitespace-nowrap font-bold text-sm" style={{ minWidth: '80px' }}>
+                League
+              </span>
+              <div
+                className="absolute right-0 top-0 bottom-0 w-5 flex items-center justify-center select-none"
+                style={{ borderLeft: '1px solid #808080', background: '#c0c0c0' }}
+              >
+                <span style={{ fontSize: '8px', lineHeight: 1 }}>▼</span>
+              </div>
+            </div>
+            {leagueOpen && (
+              <div
+                className="absolute top-full right-0 mt-px z-50 text-black text-xs font-mono"
+                style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080', background: '#c0c0c0', minWidth: '110px' }}
+              >
+                {([['pl', "Men's PL"], ['wsl', "Women's WSL"]] as [League, string][]).map(([v, label]) => (
+                  <div
+                    key={v}
+                    onClick={() => { setLeague(v); setLeagueOpen(false); }}
+                    className="px-2 py-0.5 cursor-pointer whitespace-nowrap"
+                    style={league === v ? { background: '#000080', color: '#fff' } : undefined}
+                    onMouseEnter={e => { if (league !== v) (e.currentTarget as HTMLElement).style.background = '#000080'; (e.currentTarget as HTMLElement).style.color = '#fff'; }}
+                    onMouseLeave={e => { if (league !== v) { (e.currentTarget as HTMLElement).style.background = ''; (e.currentTarget as HTMLElement).style.color = ''; } }}
+                  >
+                    {label}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
