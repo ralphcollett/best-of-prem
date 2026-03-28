@@ -94,7 +94,7 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
           className="relative w-full"
           style={{
             background: '#007a00',
-            minHeight: '420px',
+            minHeight: '600px',
           }}
         >
           {/* Pitch markings */}
@@ -113,7 +113,7 @@ export function BestXI({ xi, formation, onFormationChange }: Props) {
           </div>
 
           {/* Players */}
-          <div className="relative z-10 flex flex-col justify-around py-6 px-2 min-h-[420px]">
+          <div className="relative z-10 flex flex-col justify-around py-6 px-2 min-h-[600px]">
             {layout.map((row, r) => (
               <div key={r} className="flex justify-around items-center">
                 {row.map(slotName => {
