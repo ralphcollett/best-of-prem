@@ -27,6 +27,10 @@ Data covers the full Premier League era: 1992–93 to 2024–25.
 - [Vite](https://vitejs.dev/) + [React](https://react.dev/) + TypeScript
 - [Tailwind CSS](https://tailwindcss.com/)
 
+## Deployed App
+
+https://best-of-prem.vercel.app
+
 ## Getting Started
 
 ```bash
