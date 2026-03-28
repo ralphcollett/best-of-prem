@@ -33,7 +33,7 @@ export function calculateScores(players: Player[], awards: Award[]): PlayerScore
       if (hasYPOTY) ypotyCount++;
     }
 
-    const score = potyCount * 4 + totyCount * 2 + ypotyCount * 1;
+    const score = potyCount * 4 + totyCount * 2 + ypotyCount;
 
     return { player, score, breakdown: { potyCount, totyCount, ypotyCount } };
   });
