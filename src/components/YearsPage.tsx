@@ -6,11 +6,6 @@ interface Props {
   awards: Award[];
   players: Player[];
 }
-
-function surname(name: string): string {
-  return name.includes(' ') ? name.split(' ').slice(1).join(' ') : name;
-}
-
 function positionGroup(position: string): 'GK' | 'DF' | 'MF' | 'FW' {
   if (position === 'GK') return 'GK';
   if (['RB', 'CB', 'LB'].includes(position)) return 'DF';
