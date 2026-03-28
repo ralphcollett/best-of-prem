@@ -23,7 +23,7 @@ function PitchPlayer({ name, club }: { name: string; club: string }) {
     <div className="flex flex-col items-center gap-0.5">
       <div className="w-10 h-10 rounded-full bg-cm-red border-2 border-white flex items-center justify-center shadow" />
       <span className="text-cm-cyan text-xs font-bold text-center leading-tight w-20">
-        {surname(name)}
+        {name}
       </span>
       <span className="text-white/50 text-[10px] text-center leading-tight w-20">{club}</span>
     </div>
