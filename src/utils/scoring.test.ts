@@ -5,9 +5,9 @@ import { Award } from '../data/awards';
 
 // ─── Fixtures ───────────────────────────────────────────────────────────────
 
-const gk: Player = { id: 'gk', name: 'GK Player', position: 'GK' };
-const st: Player = { id: 'st', name: 'ST Player', position: 'ST' };
-const cm: Player = { id: 'cm', name: 'CM Player', position: 'CM' };
+const gk: Player = { id: 'gk', name: 'GK Player', positions: ['GK'] };
+const st: Player = { id: 'st', name: 'ST Player', positions: ['FW'] };
+const cm: Player = { id: 'cm', name: 'CM Player', positions: ['MF'] };
 
 // ─── calculateScores ─────────────────────────────────────────────────────────
 

@@ -85,7 +85,7 @@ export function Leaderboard({ ranked, awards }: Props) {
       <div className="
         grid gap-x-2 bg-cm-panel border-b border-cm-border px-2 py-1 text-[10px] text-white/50 uppercase sticky top-0 z-10
         grid-cols-[2.5rem_minmax(0,1fr)_2.5rem_2.5rem_3rem]
-        sm:grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
+        sm:grid-cols-[2.5rem_3rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
       ">
         <span>Rank</span>
         <span className="hidden sm:block">Pos</span>
@@ -103,15 +103,15 @@ export function Leaderboard({ ranked, awards }: Props) {
           className={`
             grid gap-x-2 px-2 py-1.5 text-sm border-b border-cm-border items-center
             grid-cols-[2.5rem_minmax(0,1fr)_2.5rem_2.5rem_3rem]
-            sm:grid-cols-[2.5rem_2rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
+            sm:grid-cols-[2.5rem_3rem_minmax(0,1fr)_minmax(0,0.8fr)_2.5rem_2.5rem_2.5rem_3rem]
             ${i % 2 === 0 ? 'bg-cm-panel' : 'bg-cm-bg'} hover:bg-cm-border transition-none
           `}
         >
           <span className="text-white/40 text-xs">{getRankDisplay(i)}</span>
-          <span className="text-xs text-white/40 hidden sm:block">{ps.player.position}</span>
+          <span className="text-xs text-white/40 hidden sm:block">{ps.player.positions.join('/')}</span>
           <div className="min-w-0 pr-1">
             <div className="text-cm-cyan font-bold truncate">{ps.player.name}</div>
-            <div className="text-white/30 text-[10px] sm:hidden">{ps.player.position}</div>
+            <div className="text-white/30 text-[10px] sm:hidden">{ps.player.positions.join('/')}</div>
           </div>
           <span className="text-white/70 text-xs truncate min-w-0 pr-2 hidden sm:block">{getPlayerClubs(ps.player.id)}</span>
 

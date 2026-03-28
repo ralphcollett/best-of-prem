@@ -12,12 +12,12 @@ const FORMATION_SLOTS: FormationSlot[] = [
   { slot: 'CB1', positions: ['CB'] },
   { slot: 'CB2', positions: ['CB'] },
   { slot: 'LB',  positions: ['LB'] },
-  { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
-  { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
-  { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
-  { slot: 'RW',  positions: ['RW', 'LW', 'ST'] },
-  { slot: 'ST',  positions: ['RW', 'LW', 'ST'] },
-  { slot: 'LW',  positions: ['RW', 'LW', 'ST'] },
+  { slot: 'CM1', positions: ['MF'] },
+  { slot: 'CM2', positions: ['MF'] },
+  { slot: 'CM3', positions: ['MF'] },
+  { slot: 'RW',  positions: ['FW', 'MF'] },
+  { slot: 'ST',  positions: ['FW', 'MF'] },
+  { slot: 'LW',  positions: ['FW', 'MF'] },
 ];
 
 export const PITCH_LAYOUT: string[][] = [
@@ -38,7 +38,7 @@ export function selectBestXI(rankedPlayers: PlayerScore[]): XISlot[] {
 
   for (const { slot, positions } of FORMATION_SLOTS) {
     const candidate = rankedPlayers.find(
-      (ps) => !used.has(ps.player.id) && positions.includes(ps.player.position)
+      (ps) => !used.has(ps.player.id) && ps.player.positions.some(p => positions.includes(p))
     ) ?? null;
 
     if (candidate) used.add(candidate.player.id);
@@ -48,7 +48,7 @@ export function selectBestXI(rankedPlayers: PlayerScore[]): XISlot[] {
   return result;
 }
 
-const ANY: Position[] = ['GK', 'RB', 'CB', 'LB', 'CM', 'CDM', 'CAM', 'RW', 'LW', 'ST'];
+const ANY: Position[] = ['GK', 'RB', 'CB', 'LB', 'MF', 'FW'];
 
 const SUB_SLOTS: { positions: Position[] }[] = [
   { positions: ['GK'] },
@@ -66,7 +66,7 @@ export function selectSubs(rankedPlayers: PlayerScore[], usedIds: Set<string>): 
 
   for (const { positions } of SUB_SLOTS) {
     const candidate = rankedPlayers.find(
-      (ps) => !used.has(ps.player.id) && positions.includes(ps.player.position)
+      (ps) => !used.has(ps.player.id) && ps.player.positions.some(p => positions.includes(p))
     );
     if (candidate) {
       used.add(candidate.player.id);

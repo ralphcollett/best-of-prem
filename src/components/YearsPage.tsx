@@ -8,10 +8,9 @@ interface Props {
 }
 function positionGroup(position: string): 'GK' | 'DF' | 'MF' | 'FW' {
   if (position === 'GK') return 'GK';
-  if (['RB', 'CB', 'LB'].includes(position)) return 'DF';
-  if (['CM', 'CDM', 'CAM'].includes(position)) return 'MF';
-  if (['RW', 'LW'].includes(position)) return 'FW';
-  return 'FW';
+  if (position === 'MF') return 'MF';
+  if (position === 'FW') return 'FW';
+  return 'DF'; // RB, CB, LB
 }
 
 function PitchPlayer({ name, club }: { name: string; club: string }) {
@@ -34,7 +33,7 @@ function TotyPitch({ toty, playerById }: { toty: Award[]; playerById: Record<str
   for (const a of toty) {
     const p = playerById[a.playerId];
     if (!p) continue;
-    byGroup[positionGroup(p.position)].push({ award: a, player: p });
+    byGroup[positionGroup(p.positions[0])].push({ award: a, player: p });
   }
 
   const rows = [
