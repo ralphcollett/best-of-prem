@@ -27,7 +27,7 @@ function PlayerCircle({ ps, num }: { ps: PlayerScore; num: number }) {
         {num}
       </div>
       <span className="text-cm-cyan text-xs font-bold text-center leading-tight w-16 truncate text-center">
-        {ps.player.name.split(' ').pop()}
+        {ps.player.name.includes(' ') ? ps.player.name.split(' ').slice(1).join(' ') : ps.player.name}
       </span>
       <span className="text-cm-yellow text-xs font-bold">{ps.score}pts</span>
     </div>

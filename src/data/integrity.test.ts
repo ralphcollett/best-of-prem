@@ -61,13 +61,8 @@ describe('data integrity', () => {
     expect(blank).toEqual([]);
   });
 
-  it('every player has at least one club listed', () => {
-    const noClub = players.filter(p => p.clubs.length === 0);
-    expect(noClub).toEqual([]);
-  });
-
-  it('every player has a non-negative appearances count', () => {
-    const invalid = players.filter(p => p.appearances < 0);
-    expect(invalid).toEqual([]);
+  it('all award entries have a non-empty club field', () => {
+    const missing = awards.filter(a => !a.club || !a.club.trim());
+    expect(missing).toEqual([]);
   });
 });

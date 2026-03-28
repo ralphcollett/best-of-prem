@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { PlayerScore } from '../utils/scoring';
+import { Award } from '../data/awards';
 
 interface Props {
   ranked: PlayerScore[];
+  awards: Award[];
 }
 
 const PAGE_SIZE = 20;
 
-export function Leaderboard({ ranked }: Props) {
+export function Leaderboard({ ranked, awards }: Props) {
   const [visible, setVisible] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -36,10 +38,10 @@ export function Leaderboard({ ranked }: Props) {
     if (index === 0) return '1';
     const current = ranked[index];
     const prev = ranked[index - 1];
-    
-    const isTied = 
-      current.score === prev.score && 
-      current.breakdown.potyCount === prev.breakdown.potyCount && 
+
+    const isTied =
+      current.score === prev.score &&
+      current.breakdown.potyCount === prev.breakdown.potyCount &&
       current.breakdown.ypotyCount === prev.breakdown.ypotyCount;
 
     if (isTied) {
@@ -47,8 +49,8 @@ export function Leaderboard({ ranked }: Props) {
       let firstIdx = index - 1;
       while (firstIdx > 0) {
         const p = ranked[firstIdx - 1];
-        if (p.score === current.score && 
-            p.breakdown.potyCount === current.breakdown.potyCount && 
+        if (p.score === current.score &&
+            p.breakdown.potyCount === current.breakdown.potyCount &&
             p.breakdown.ypotyCount === current.breakdown.ypotyCount) {
           firstIdx--;
         } else {
@@ -58,6 +60,12 @@ export function Leaderboard({ ranked }: Props) {
       return `=${firstIdx + 1}`;
     }
     return (index + 1).toString();
+  };
+
+  // Derive unique clubs per player from their awards
+  const getPlayerClubs = (playerId: string): string => {
+    const clubs = [...new Set(awards.filter(a => a.playerId === playerId).map(a => a.club))];
+    return clubs.join(', ');
   };
 
   return (
@@ -77,7 +85,7 @@ export function Leaderboard({ ranked }: Props) {
         <span>Pos</span>
         <span>Pos</span>
         <span className="min-w-0">Player</span>
-        <span className="min-w-0">Club(s)</span>
+        <span className="min-w-0">Award Club(s)*</span>
         <span className="text-center">POTY</span>
         <span className="text-center">YPOTY</span>
         <span className="text-center">TOTY</span>
@@ -94,12 +102,12 @@ export function Leaderboard({ ranked }: Props) {
           <span className="text-white/40 text-xs">{getRankDisplay(i)}</span>
           <span className="text-xs text-white/40">{ps.player.position}</span>
           <span className="text-cm-cyan font-bold truncate min-w-0 pr-2">{ps.player.name}</span>
-          <span className="text-white/70 text-xs truncate min-w-0 pr-2">{ps.player.clubs.join(', ')}</span>
-          
+          <span className="text-white/70 text-xs truncate min-w-0 pr-2">{getPlayerClubs(ps.player.id)}</span>
+
           <span className="text-center text-cm-yellow font-bold">{ps.breakdown.potyCount || '—'}</span>
           <span className="text-center text-white/40">{ps.breakdown.ypotyCount || '—'}</span>
           <span className="text-center text-white/60">{ps.breakdown.totyCount || '—'}</span>
-          
+
           <span className="text-cm-yellow font-bold text-right">{ps.score}</span>
         </div>
       ))}
@@ -115,6 +123,7 @@ export function Leaderboard({ ranked }: Props) {
         <span><span className="text-white/60 font-bold">TOTY</span> = Team of Year (1pt)</span>
         <span><span className="text-white/40 font-bold">YPOTY</span> = Young Player of Year (1pt)</span>
         <span className="ml-auto">Tiebreaker: POTY count, then YPOTY count</span>
+        <span className="w-full">* clubs shown are only where PFA awards were won</span>
       </div>
     </div>
   );

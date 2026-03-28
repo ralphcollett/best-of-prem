@@ -5,8 +5,9 @@ import { getRankedPlayers } from './utils/scoring';
 import { selectBestXI, selectSubs, Formation } from './utils/bestXI';
 import { Leaderboard } from './components/Leaderboard';
 import { BestXI } from './components/BestXI';
+import { YearsPage } from './components/YearsPage';
 
-type Tab = 'leaderboard' | 'xi';
+type Tab = 'leaderboard' | 'xi' | 'years';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('leaderboard');
@@ -30,7 +31,7 @@ export default function App() {
 
       {/* Tab bar */}
       <div className="bg-cm-panel border-b-2 border-cm-border flex">
-        {([['leaderboard', 'All Time Rankings'], ['xi', 'Best XI']] as [Tab, string][]).map(([t, label]) => (
+        {([['leaderboard', 'All Time Rankings'], ['xi', 'Best XI'], ['years', 'Years']] as [Tab, string][]).map(([t, label]) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -51,9 +52,11 @@ export default function App() {
       {/* Content */}
       <main className="max-w-5xl mx-auto px-4 py-6">
         {tab === 'leaderboard' ? (
-          <Leaderboard ranked={ranked} />
-        ) : (
+          <Leaderboard ranked={ranked} awards={awards} />
+        ) : tab === 'xi' ? (
           <BestXI xi={xi} subs={subs} formation={formation} onFormationChange={setFormation} />
+        ) : (
+          <YearsPage awards={awards} players={players} />
         )}
       </main>
     </div>

@@ -5,9 +5,9 @@ import { Player } from '../data/players';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function makePS(id: string, position: Player['position'], score: number, appearances = 100): PlayerScore {
+function makePS(id: string, position: Player['position'], score: number): PlayerScore {
   return {
-    player: { id, name: id, position, nationality: 'English', clubs: ['Club'], appearances },
+    player: { id, name: id, position },
     score,
     breakdown: { potyCount: 0, totyCount: 0, ypotyCount: 0 },
   };

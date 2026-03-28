@@ -1,7 +1,7 @@
 import { Position } from '../data/players';
 import { PlayerScore } from './scoring';
 
-export type Formation = '4-3-3' | '4-4-2';
+export type Formation = '4-3-3' | '4-4-2' | '5-3-2';
 
 interface FormationSlot {
   slot: string;
@@ -18,9 +18,9 @@ const FORMATIONS: Record<Formation, FormationSlot[]> = {
     { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
     { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
     { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'LW',  positions: ['LW', 'ST'] }, // Wide strikers can be forwards or wingers
-    { slot: 'ST',  positions: ['ST'] },
     { slot: 'RW',  positions: ['RW', 'ST'] }, // Wide strikers can be forwards or wingers
+    { slot: 'ST',  positions: ['ST'] },
+    { slot: 'LW',  positions: ['LW', 'ST'] }, // Wide strikers can be forwards or wingers
   ],
   '4-4-2': [
     { slot: 'GK',  positions: ['GK'] },
@@ -28,10 +28,23 @@ const FORMATIONS: Record<Formation, FormationSlot[]> = {
     { slot: 'CB1', positions: ['CB'] },
     { slot: 'CB2', positions: ['CB'] },
     { slot: 'LB',  positions: ['LB'] },
-    { slot: 'LM',  positions: ['LW'] }, // Must have wingers wide
+    { slot: 'RM',  positions: ['RW'] }, // Must have wingers wide
     { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
     { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
-    { slot: 'RM',  positions: ['RW'] }, // Must have wingers wide
+    { slot: 'LM',  positions: ['LW'] }, // Must have wingers wide
+    { slot: 'ST1', positions: ['ST'] },
+    { slot: 'ST2', positions: ['ST'] },
+  ],
+  '5-3-2': [
+    { slot: 'GK',  positions: ['GK'] },
+    { slot: 'RWB', positions: ['RB'] },
+    { slot: 'CB1', positions: ['CB'] },
+    { slot: 'CB2', positions: ['CB'] },
+    { slot: 'CB3', positions: ['CB'] },
+    { slot: 'LWB', positions: ['LB'] },
+    { slot: 'CM1', positions: ['CM', 'CDM', 'CAM'] },
+    { slot: 'CM2', positions: ['CM', 'CDM', 'CAM'] },
+    { slot: 'CM3', positions: ['CM', 'CDM', 'CAM'] },
     { slot: 'ST1', positions: ['ST'] },
     { slot: 'ST2', positions: ['ST'] },
   ],
@@ -48,6 +61,12 @@ export const PITCH_LAYOUTS: Record<Formation, string[][]> = {
     ['ST1', 'ST2'],
     ['LM', 'CM1', 'CM2', 'RM'],
     ['LB', 'CB1', 'CB2', 'RB'],
+    ['GK'],
+  ],
+  '5-3-2': [
+    ['ST1', 'ST2'],
+    ['CM1', 'CM2', 'CM3'],
+    ['LWB', 'CB1', 'CB2', 'CB3', 'RWB'],
     ['GK'],
   ],
 };

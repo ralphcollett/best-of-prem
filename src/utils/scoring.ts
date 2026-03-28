@@ -29,7 +29,7 @@ export function calculateScores(players: Player[], awards: Award[]): PlayerScore
       const hasYPOTY = seasonAwards.some((a) => a.type === 'YPOTY');
 
       if (hasPOTY) potyCount++;
-      if (hasTOTY) totyCount++; 
+      if (hasTOTY) totyCount++;
       if (hasYPOTY) ypotyCount++;
     }
 
