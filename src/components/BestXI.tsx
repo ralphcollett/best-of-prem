@@ -26,7 +26,7 @@ function PlayerCircle({ ps, num }: { ps: PlayerScore; num: number }) {
       <div className="w-10 h-10 rounded-full bg-cm-red border-2 border-white flex items-center justify-center text-sm font-bold text-white shadow">
         {num}
       </div>
-      <span className="text-cm-cyan text-xs font-bold text-center leading-tight w-16 truncate text-center">
+      <span className="text-cm-cyan text-xs font-bold text-center leading-tight w-20 text-center">
         {ps.player.name.includes(' ') ? ps.player.name.split(' ').slice(1).join(' ') : ps.player.name}
       </span>
       <span className="text-cm-yellow text-xs font-bold">{ps.score}pts</span>
@@ -153,7 +153,7 @@ export function BestXI({ xi, subs, formation, onFormationChange }: Props) {
                     <div key={slotName} className="flex justify-center w-20">
                       {entry?.playerScore
                         ? <PlayerCircle ps={entry.playerScore} num={num} />
-                        : <EmptyCircle slot={slotName} />
+                        : <EmptyCircle />
                       }
                     </div>
                   );
