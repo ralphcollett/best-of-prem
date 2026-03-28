@@ -41,13 +41,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-cm-bg font-mono text-white">
       {/* Title bar */}
-      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2 flex items-center justify-between">
-        <div className="w-40" />
-        <h1 className="text-cm-yellow font-bold text-lg uppercase tracking-wide text-center flex-1">
+      <div className="bg-cm-red border-b-2 border-yellow-600 px-4 py-2 flex items-center justify-between gap-2">
+        <div className="hidden sm:block sm:w-40 shrink-0" />
+        <h1 className="text-cm-yellow font-bold text-sm sm:text-lg uppercase tracking-wide text-center flex-1 leading-tight">
           {league === 'pl' ? 'Premier League' : "Women's Super League"} All-Time Select
         </h1>
         {/* League dropdown */}
-        <div className="w-40 flex justify-end">
+        <div className="shrink-0 sm:w-40 flex justify-end">
           <div ref={leagueRef} className="relative flex items-center gap-2">
             <div
               className="relative inline-flex items-stretch text-black text-xs font-mono cursor-pointer"
@@ -93,7 +93,7 @@ export default function App() {
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-6 py-1.5 text-sm font-bold border-r border-cm-border transition-none ${
+            className={`px-3 sm:px-6 py-1.5 text-xs sm:text-sm font-bold border-r border-cm-border transition-none ${
               tab === t
                 ? 'bg-cm-yellow text-black'
                 : 'text-cm-cyan hover:bg-cm-border'
