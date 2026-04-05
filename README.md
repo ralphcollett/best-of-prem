@@ -320,9 +320,24 @@ Open [http://localhost:5173](http://localhost:5173).
 
 All award data lives in `src/data/awards.ts`. Player details (positions, appearances) are in `src/data/players.ts`. Both files are plain TypeScript — edit them directly to correct or extend the data.
 
-To add a new season:
+### Adding a new season
+
+Run the built-in skill from the Claude Code CLI:
+
+```
+/new-season 2025-26
+```
+
+This will:
+1. Look up the PFA POTY, YPOTY, and TOTY winners for the given season
+2. Add any new players to `src/data/players.ts`
+3. Append award entries to `src/data/awards.ts`
+4. Run the mismatch check and TypeScript compile to verify everything is correct
+
+You can also do it manually:
 1. Add any new players to `src/data/players.ts`
 2. Add POTY, YPOTY, and TOTY entries for the season to `src/data/awards.ts`
+3. Run `node -e "..."` mismatch check (see CLAUDE.md) and `npx tsc --noEmit`
 
 ---
 
