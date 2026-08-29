@@ -47,6 +47,7 @@ export const awards: Award[] = [
   { playerId: 'haaland', season: '2022-23', type: 'POTY', club: 'Manchester City' },
   { playerId: 'foden', season: '2023-24', type: 'POTY', club: 'Manchester City' },
   { playerId: 'salah', season: '2024-25', type: 'POTY', club: 'Liverpool' },
+  { playerId: 'bruno-fernandes', season: '2025-26', type: 'POTY', club: 'Manchester United' },
 
   // ─── PFA Young Player of the Year ─────────────────────────────────────────
   { playerId: 'giggs', season: '1992-93', type: 'YPOTY', club: 'Manchester United' },
@@ -82,6 +83,7 @@ export const awards: Award[] = [
   { playerId: 'saka', season: '2022-23', type: 'YPOTY', club: 'Arsenal' },
   { playerId: 'palmer', season: '2023-24', type: 'YPOTY', club: 'Chelsea' },
   { playerId: 'morgan-rogers', season: '2024-25', type: 'YPOTY', club: 'Aston Villa' },
+  { playerId: 'oreilly', season: '2025-26', type: 'YPOTY', club: 'Manchester City' },
 
   // ─── PFA Team of the Year ─────────────────────────────────────────────────
   // 1992-93
@@ -512,4 +514,17 @@ export const awards: Award[] = [
   { playerId: 'salah', season: '2024-25', type: 'TOTY', club: 'Liverpool' },
   { playerId: 'isak', season: '2024-25', type: 'TOTY', club: 'Newcastle United' },
   { playerId: 'wood', season: '2024-25', type: 'TOTY', club: 'Nottingham Forest' },
+
+  // 2025-26
+  { playerId: 'raya', season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'timber', season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'saliba', season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'gabriel', season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'oreilly', season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'bruno-fernandes', season: '2025-26', type: 'TOTY', club: 'Manchester United' },
+  { playerId: 'rice', season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'cherki', season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'semenyo', season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'haaland', season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'igor-thiago', season: '2025-26', type: 'TOTY', club: 'Brentford' },
 ];

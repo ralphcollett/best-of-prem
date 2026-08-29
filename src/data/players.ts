@@ -99,6 +99,8 @@ export const players: Player[] = [
   { id: 'saliba', name: 'William Saliba', positions: ['CB'] },
   { id: 'gabriel', name: 'Gabriel Magalhães', positions: ['CB'] },
   { id: 'kerkez', name: 'Milos Kerkez', positions: ['LB'] },
+  { id: 'timber', name: 'Jurriën Timber', positions: ['RB'] },
+  { id: 'oreilly', name: "Nico O'Reilly", positions: ['LB'] },
 
   // Midfielders
   { id: 'keane-r', name: 'Roy Keane', positions: ['MF'] },
@@ -165,6 +167,7 @@ export const players: Player[] = [
   { id: 'rice', name: 'Declan Rice', positions: ['MF'] },
   { id: 'mac-allister', name: 'Alexis Mac Allister', positions: ['MF'] },
   { id: 'gravenberch', name: 'Ryan Gravenberch', positions: ['MF'] },
+  { id: 'cherki', name: 'Rayan Cherki', positions: ['MF'] },
 
   // Forwards
   { id: 'shearer', name: 'Alan Shearer', positions: ['FW'] },
@@ -211,6 +214,8 @@ export const players: Player[] = [
   { id: 'palmer', name: 'Cole Palmer', positions: ['MF', 'FW'] },
   { id: 'isak', name: 'Alexander Isak', positions: ['FW'] },
   { id: 'wood', name: 'Chris Wood', positions: ['FW'] },
+  { id: 'semenyo', name: 'Antoine Semenyo', positions: ['FW'] },
+  { id: 'igor-thiago', name: 'Igor Thiago', positions: ['FW'] },
 
   // Young Players (if not already included)
   { id: 'jenas', name: 'Jermaine Jenas', positions: ['MF'] },
