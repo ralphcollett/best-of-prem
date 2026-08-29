@@ -6,7 +6,7 @@ export interface PlayerScore {
   score: number;
   breakdown: {
     potyCount: number;
-    totyCount: number; // effective (excluded if POTY same season)
+    totyCount: number; // seasons with a TOTY selection
     ypotyCount: number;
   };
 }

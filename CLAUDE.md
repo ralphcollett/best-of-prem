@@ -6,16 +6,18 @@ This is a Premier League all-time rankings app. It ranks players by PFA award po
 
 ## Scoring rules (critical — do not change without user confirmation)
 
-- PFA Players' Player of the Year = **4 pts**
-- PFA Team of the Year = **2 pts**, but **0 pts** if the player also won POTY in the same season
+- PFA Players' Player of the Year = **3 pts**
+- PFA Team of the Year = **1 pt**
 - PFA Young Player of the Year = **1 pt**
-- Tiebreaker for equal scores: total PL appearances (descending)
+- Each award counts once per season, even if the same award appears twice for that season
+- A TOTY selection still scores in a season the player also won POTY — the two are not mutually exclusive
+- Tiebreakers for equal scores, in order: POTY wins, then YPOTY wins; still-equal players share a rank
 
 Scoring logic is in `src/utils/scoring.ts`.
 
 ## Data files
 
-- `src/data/players.ts` — player registry (id, name, position, nationality, clubs, appearances)
+- `src/data/players.ts` — player registry (id, name, positions, optional image)
 - `src/data/awards.ts` — all award entries (playerId, season, type)
 
 Award `playerId` values must exactly match `id` values in `players.ts`. Any mismatch causes the award to be silently ignored. Run the mismatch check below after editing data.
@@ -44,7 +46,7 @@ console.log(missing.length ? missing : 'All OK');
 
 ## Best XI
 
-Formation is 4-3-3. Slot-to-position mapping is in `src/utils/bestXI.ts`. The XI is auto-selected by taking the highest-ranked eligible player per slot in order. Midfield slots accept CM, CDM, or CAM.
+Formation is 4-3-3. Slot-to-position mapping is in `src/utils/bestXI.ts`. The XI is auto-selected by taking the highest-ranked eligible player per slot in order. Midfield slots accept MF; the three attacking slots (LW/ST/RW) accept FW or MF.
 
 ## Commands
 

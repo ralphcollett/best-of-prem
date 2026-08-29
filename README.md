@@ -13,7 +13,9 @@ A React app that ranks the greatest Premier League players of all time using PFA
 **Tiebreakers** (in order):
 1. Total number of PFA Player of the Year (POTY) wins.
 2. Total number of PFA Young Player of the Year (YPOTY) wins.
-3. If still equal, players share the same rank.
+3. If still equal, players share the same rank, shown with an `=` prefix (e.g. `=7`).
+
+Only players with at least one award are ranked; everyone else is filtered out.
 
 Data covers the full Premier League era: 1992–93 to 2025–26.
 
