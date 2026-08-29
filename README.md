@@ -369,6 +369,7 @@ Data covers the full FA Women's Super League era. The PFA Women's POTY award beg
 | 2022–23 | Rachel Daly | Aston Villa |
 | 2023–24 | Khadija Shaw | Manchester City |
 | 2024–25 | Mariona Caldentey | Arsenal |
+| 2025–26 | Khadija Shaw | Manchester City |
 
 ### PFA Women's Young Player of the Year
 | Year | Player | Team |
@@ -385,8 +386,15 @@ Data covers the full FA Women's Super League era. The PFA Women's POTY award beg
 | 2022–23 | Lauren James | Chelsea |
 | 2023–24 | Grace Clinton | Tottenham Hotspur |
 | 2024–25 | Olivia Smith | Liverpool |
+| 2025–26 | Olivia Smith | Arsenal |
 
 ### PFA Women's Team of the Year (WSL)
+
+**2025–26**
+- GK: Hannah Hampton (Chelsea)
+- DF: Kerstin Casparij (Manchester City), Tōko Koga (Tottenham Hotspur), Ellie Carpenter (Chelsea), Emily Fox (Arsenal)
+- MF: Yui Hasegawa (Manchester City), Mariona Caldentey (Arsenal), Jess Park (Manchester United)
+- FW: Khadija Shaw (Manchester City), Alessia Russo (Arsenal), Lauren James (Chelsea)
 
 **2024–25**
 - GK: Phallon Tullis-Joyce (Manchester United)

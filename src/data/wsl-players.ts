@@ -10,6 +10,7 @@ export const wslPlayers: Player[] = [
   { id: 'sophie-baggaley', name: 'Sophie Baggaley', positions: ['GK'] },
   { id: 'khiara-keating', name: 'Khiara Keating', positions: ['GK'] },
   { id: 'phallon-tullis-joyce', name: 'Phallon Tullis-Joyce', positions: ['GK'] },
+  { id: 'hannah-hampton', name: 'Hannah Hampton', positions: ['GK'] },
 
   // Right Backs
   { id: 'lucy-bronze', name: 'Lucy Bronze', positions: ['RB'] },
@@ -18,6 +19,8 @@ export const wslPlayers: Player[] = [
   { id: 'niamh-charles', name: 'Niamh Charles', positions: ['RB'] },
   { id: 'emily-fox', name: 'Emily Fox', positions: ['RB'] },
   { id: 'jayde-riviere', name: 'Jayde Riviere', positions: ['RB'] },
+  { id: 'kerstin-casparij', name: 'Kerstin Casparij', positions: ['RB'] },
+  { id: 'ellie-carpenter', name: 'Ellie Carpenter', positions: ['RB'] },
 
   // Centre Backs
   { id: 'martha-harris', name: 'Martha Harris', positions: ['CB'] },
@@ -37,6 +40,7 @@ export const wslPlayers: Player[] = [
   { id: 'laia-aleixandri', name: 'Laia Aleixandri', positions: ['CB'] },
   { id: 'lotte-wubben-moy', name: 'Lotte Wubben-Moy', positions: ['CB'] },
   { id: 'jess-carter', name: 'Jess Carter', positions: ['CB'] },
+  { id: 'toko-koga', name: 'Tōko Koga', positions: ['CB'] },
 
   // Left Backs
   { id: 'demi-stokes', name: 'Demi Stokes', positions: ['LB'] },
@@ -67,6 +71,7 @@ export const wslPlayers: Player[] = [
   { id: 'grace-clinton', name: 'Grace Clinton', positions: ['MF'] },
   { id: 'fran-kirby', name: 'Fran Kirby', positions: ['MF', 'FW'] },
   { id: 'erin-cuthbert', name: 'Erin Cuthbert', positions: ['MF', 'FW'] },
+  { id: 'jess-park', name: 'Jess Park', positions: ['MF'] },
 
   // Forwards
   { id: 'danielle-carter', name: 'Danielle Carter', positions: ['FW'] },

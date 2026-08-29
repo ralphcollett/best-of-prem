@@ -15,6 +15,7 @@ export const wslAwards: Award[] = [
   { playerId: 'rachel-daly',         season: '2022-23', type: 'POTY', club: 'Aston Villa' },
   { playerId: 'khadija-shaw',        season: '2023-24', type: 'POTY', club: 'Manchester City' },
   { playerId: 'mariona-caldentey',   season: '2024-25', type: 'POTY', club: 'Arsenal' },
+  { playerId: 'khadija-shaw',        season: '2025-26', type: 'POTY', club: 'Manchester City' },
 
   // ─── PFA Women's Young Player of the Year ────────────────────────────────
   { playerId: 'martha-harris',       season: '2013-14', type: 'YPOTY', club: 'Liverpool' },
@@ -29,6 +30,7 @@ export const wslAwards: Award[] = [
   { playerId: 'lauren-james',        season: '2022-23', type: 'YPOTY', club: 'Chelsea' },
   { playerId: 'grace-clinton',       season: '2023-24', type: 'YPOTY', club: 'Tottenham Hotspur' },
   { playerId: 'olivia-smith',        season: '2024-25', type: 'YPOTY', club: 'Liverpool' },
+  { playerId: 'olivia-smith',        season: '2025-26', type: 'YPOTY', club: 'Arsenal' },
 
   // ─── PFA Women's Team of the Year ────────────────────────────────────────
 
@@ -187,4 +189,17 @@ export const wslAwards: Award[] = [
   { playerId: 'mariona-caldentey',   season: '2024-25', type: 'TOTY', club: 'Arsenal' },
   { playerId: 'alessia-russo',       season: '2024-25', type: 'TOTY', club: 'Arsenal' },
   { playerId: 'mary-fowler',         season: '2024-25', type: 'TOTY', club: 'Manchester City' },
+
+  // 2025-26
+  { playerId: 'hannah-hampton',      season: '2025-26', type: 'TOTY', club: 'Chelsea' },
+  { playerId: 'kerstin-casparij',    season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'toko-koga',           season: '2025-26', type: 'TOTY', club: 'Tottenham Hotspur' },
+  { playerId: 'ellie-carpenter',     season: '2025-26', type: 'TOTY', club: 'Chelsea' },
+  { playerId: 'emily-fox',           season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'yui-hasegawa',        season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'mariona-caldentey',   season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'jess-park',           season: '2025-26', type: 'TOTY', club: 'Manchester United' },
+  { playerId: 'khadija-shaw',        season: '2025-26', type: 'TOTY', club: 'Manchester City' },
+  { playerId: 'alessia-russo',       season: '2025-26', type: 'TOTY', club: 'Arsenal' },
+  { playerId: 'lauren-james',        season: '2025-26', type: 'TOTY', club: 'Chelsea' },
 ];
