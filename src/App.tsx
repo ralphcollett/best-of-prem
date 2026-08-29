@@ -103,7 +103,7 @@ export default function App() {
           </button>
         ))}
         <div className="flex-1 hidden sm:flex items-center justify-end px-4">
-          <span className="text-cm-cyan text-xs">{league === 'pl' ? 'PFA Awards 1992–2025' : 'PFA Women\'s Awards 2013–2025'} &nbsp;|&nbsp; Player of Year 3pts · Team of Year 1pt · Young Player of Year 1pt</span>
+          <span className="text-cm-cyan text-xs">{league === 'pl' ? 'PFA Awards 1992–2026' : 'PFA Women\'s Awards 2013–2026'} &nbsp;|&nbsp; Player of Year 3pts · Team of Year 1pt · Young Player of Year 1pt</span>
         </div>
       </div>
 

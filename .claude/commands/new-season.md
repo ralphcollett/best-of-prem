@@ -25,7 +25,7 @@ For each award winner not already in the file, add an entry. Follow existing con
 
 Append under the correct sections in this order:
 1. POTY section — one entry
-2. YPOTY section — one entry (skip if winner also won POTY)
+2. YPOTY section — one entry (a player can win POTY and YPOTY in the same season; add both)
 3. TOTY section — 11 entries, with a `// YYYY-YY` comment header
 
 Season string format: `'YYYY-YY'` (e.g. `'2025-26'`)
@@ -55,13 +55,21 @@ console.log(missing.length ? missing : 'All OK');
 "
 ```
 
-Then type-check:
+Then run the tests (these also check both the PL and WSL data) and type-check:
+```bash
+npm test -- --run
+```
 ```bash
 npx tsc --noEmit
 ```
 
 Fix any errors before finishing.
 
-### 5. Report back
+### 5. Update the header range
+
+`src/App.tsx` shows the covered season range (e.g. `PFA Awards 1992–2026`). Bump the end year
+so it includes the season just added.
+
+### 6. Report back
 
 Summarise what was added: POTY winner, YPOTY winner, and the 11 TOTY players with their clubs. Note any players who were new additions to `players.ts`.
