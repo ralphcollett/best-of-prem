@@ -15,7 +15,7 @@ A React app that ranks the greatest Premier League players of all time using PFA
 2. Total number of PFA Young Player of the Year (YPOTY) wins.
 3. If still equal, players share the same rank.
 
-Data covers the full Premier League era: 1992–93 to 2024–25.
+Data covers the full Premier League era: 1992–93 to 2025–26.
 
 ## Features
 
@@ -78,6 +78,7 @@ Open [http://localhost:5173](http://localhost:5173).
 | 2022–23 | Erling Haaland | Manchester City |
 | 2023–24 | Phil Foden | Manchester City |
 | 2024–25 | Mohamed Salah | Liverpool |
+| 2025–26 | Bruno Fernandes | Manchester United |
 
 ### PFA Young Player of the Year
 | Year | Player | Team |
@@ -115,8 +116,15 @@ Open [http://localhost:5173](http://localhost:5173).
 | 2022–23 | Bukayo Saka | Arsenal |
 | 2023–24 | Cole Palmer | Chelsea |
 | 2024–25 | Morgan Rogers | Aston Villa |
+| 2025–26 | Nico O'Reilly | Manchester City |
 
 ### PFA Team of the Year (Premier League)
+
+**2025–26**
+- GK: David Raya (Arsenal)
+- DF: Jurriën Timber (Arsenal), William Saliba (Arsenal), Gabriel (Arsenal), Nico O'Reilly (Manchester City)
+- MF: Bruno Fernandes (Manchester United), Declan Rice (Arsenal), Rayan Cherki (Manchester City)
+- FW: Antoine Semenyo (Manchester City), Erling Haaland (Manchester City), Igor Thiago (Brentford)
 
 **2024–25**
 - GK: Matz Sels (Nottingham Forest)
